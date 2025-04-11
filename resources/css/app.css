@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,
+html {
+    --font-sans:
+        'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@layer base {
+    :root {
+  --background: 134.1 50% 95%;
+  --foreground: 134.1 2.5% 7.5%;
+  --card: 134.1 25% 95%;
+  --card-foreground: 134.1 2.5% 12.5%;
+  --popover: 134.1 50% 97.5%;
+  --popover-foreground: 134.1 97.5% 5%;
+  --primary: 134.1 88.7% 45.1%;
+  --primary-foreground: 0, 0%, 0%;
+  --secondary: 134.1 20% 80%;
+  --secondary-foreground: 0 0% 0%;
+  --muted: 172.1 20% 90%;
+  --muted-foreground: 134.1 2.5% 37.5%;
+  --accent: 172.1 20% 85%;
+  --accent-foreground: 134.1 2.5% 12.5%;
+  --destructive: 0 75% 40%;
+  --destructive-foreground: 134.1 2.5% 95%;
+  --border: 134.1 25% 66%;
+  --input: 134.1 25% 34%;
+  --ring: 134.1 88.7% 45.3%;
+  --radius: 0.5rem;
+  --sidebar-background: 134, 50%, 90%;
+  --sidebar-foreground: 134, 3%, 7%;
+  --sidebar-primary: 134, 89%, 41%;
+  --sidebar-primary-foreground: 0 0% 0%;
+  --sidebar-accent: 172, 20%, 81%;
+  --sidebar-accent-foreground: 0 0% 0%;
+  --sidebar-border: 134, 25%, 63%;
+  --sidebar-ring: 124, 98%, 45%;
+}
+
+    .dark {
+  --background: 134.1 30% 7.5%;
+  --foreground: 134.1 2.5% 95%;
+  --card: 134.1 25% 5%;
+  --card-foreground: 134.1 2.5% 95%;
+  --popover: 134.1 30% 5%;
+  --popover-foreground: 134.1 2.5% 95%;
+  --primary: 134.1 88.7% 45.1%;
+  --primary-foreground: 0, 0%, 0%;
+  --secondary: 134.1 20% 15%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 172.1 20% 20%;
+  --muted-foreground: 134.1 2.5% 62.5%;
+  --accent: 172.1 20% 20%;
+  --accent-foreground: 134.1 2.5% 92.5%;
+  --destructive: 0 75% 40%;
+  --destructive-foreground: 134.1 2.5% 95%;
+  --border: 134.1 25% 34%;
+  --input: 134.1 25% 34%;
+  --ring: 134.1 88.7% 45.3%;
+  --radius: 0.5rem;
+  --sidebar-background: 134, 30%, 10%;
+  --sidebar-foreground: 134, 3%, 100%;
+  --sidebar-primary: 134, 89%, 36%;
+  --sidebar-primary-foreground: 0, 0%, 0%;
+  --sidebar-accent: 172, 20%, 17%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 134, 25%, 32%;
+  --sidebar-ring: 124, 98%, 45%;
+}
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
+}
