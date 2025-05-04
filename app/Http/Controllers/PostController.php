@@ -12,8 +12,11 @@ class PostController extends Controller
      * Display a listing of the resource.
      */
     public function index()
+    
     {
-        return Inertia::render('post/Index');
+        return Inertia::render('post/Index', [
+            'posts' => Post::all(),
+        ]);
 
     }
 
@@ -48,7 +51,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return Inertia::render('post/Show', [
-            'post' => $post
+            'post' => $post->loadMissing('comments.user'),
         ]);
     }
 

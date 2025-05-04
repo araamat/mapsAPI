@@ -57,30 +57,38 @@ class MarkerController extends Controller
      */
     public function show(Marker $marker)
     {
-         
+        return view('markers.show', compact('marker'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Marker $marker)
     {
-        //
+        return view('markers.edit', compact('marker'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Marker $marker)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+        ]);
+
+        $marker->update($request->all());
+
+        return redirect()->route('markers.index')->with('success', 'Marker uuendatud!');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Marker $marker)
-    {
-        //
-    }
-}
+//     public function destroy(Marker $marker)
+//     {
+//         //
+//     }
+// }
