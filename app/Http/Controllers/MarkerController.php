@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Marker;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class MarkerController extends Controller
 {
@@ -57,38 +58,49 @@ class MarkerController extends Controller
      */
     public function show(Marker $marker)
     {
-        return view('markers.show', compact('marker'));
+    return Inertia::render('Markers/Show', [
+        'marker' => $marker
+    ]);
     }
-
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Marker $marker)
     {
-        return view('markers.edit', compact('marker'));
+        return Inertia::render('Markers/Edit', [
+            'marker' => $marker,
+        ]);
     }
 
     public function update(Request $request, Marker $marker)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
             'description' => 'nullable|string',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
         ]);
 
-        $marker->update($request->all());
+        $marker->update([
+            'name' => $validated['title'], // ← tõlge!
+            'description' => $validated['description'],
+            'latitude' => $validated['latitude'],
+            'longitude' => $validated['longitude'],
+        ]);
 
-        return redirect()->route('markers.index')->with('success', 'Marker uuendatud!');
+        return redirect()->route('dashboard')->with('success', 'Marker uuendatud!');
     }
+
 
 
     /**
      * Remove the specified resource from storage.
      */
-//     public function destroy(Marker $marker)
-//     {
-//         //
-//     }
-// }
+    public function destroy(Marker $marker)
+    {
+        $marker->delete();
+        return redirect()->route('dashboard')->with('success', 'Marker kustutatud!');
+    }
+
+}
