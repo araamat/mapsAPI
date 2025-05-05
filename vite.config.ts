@@ -33,4 +33,12 @@ export default defineConfig({
             plugins: [tailwindcss, autoprefixer],
         },
     },
+
+    // 🔽 LISANDUB SEE ⬇️
+    build: {
+        manifest: true,
+        outDir: 'public/build',
+    },
+    base: '/', // oluline, et lingid oleks suhtelised (HTTPS toetus)
 });
+
