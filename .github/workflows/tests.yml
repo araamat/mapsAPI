@@ -47,11 +47,6 @@ jobs:
       - name: Build Frontend
         run: npm run build
 
-      - name: Ensure Vite manifest exists
-        run: |
-          ls -lah public/build
-          cat public/build/manifest.json
-
       - name: Fresh migrate (for clean test DB)
         run: php artisan migrate:fresh --force
 
