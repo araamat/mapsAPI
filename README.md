@@ -1,4 +1,4 @@
-# LIVE: 
+# :door:LIVE: 
 
 ### **Hajusrakenduse ülesanded**  
 #### **1. Ilmateenuse API liidestus**  :white_check_mark:TEHTUD
