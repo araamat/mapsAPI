@@ -1,0 +1,21 @@
+
+services:
+  - type: web
+    name: laravel-maps-app
+    env: docker
+    plan: free
+    buildCommand: "composer install --no-dev && npm install && npm run build"
+    startCommand: "php artisan serve --host=0.0.0.0 --port=$PORT"
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        sync: false
+      - key: APP_DEBUG
+        value: false
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: DB_DATABASE
+        value: /var/data/database.sqlite
+      - key: OPEN_WEATHER_MAP_KEY
+        sync: false
