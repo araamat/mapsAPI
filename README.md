@@ -21,7 +21,7 @@
 ---
 
 ### **Veebirakenduste arendamine**
-#### **3. Blogi ja Kommentaaride haldus**
+#### **3. Blogi ja Kommentaaride haldus** <span style="color: red;">POOLELI</span>
 - Luua blogifunktsionaalsus.
 - Lisada autentimissüsteem (registreerimine ja sisselogimine).
 - Luua andmebaasitabel **blogi postitustele**, mille väljad on `id`, `title`, `description`, `created_at`, `updated_at`.
