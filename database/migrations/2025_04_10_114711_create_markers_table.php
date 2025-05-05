@@ -9,17 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
+    public function up()
+{
+    if (!Schema::hasTable('markers')) {
         Schema::create('markers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
-            $table->decimal('latitude');
-            $table->decimal('longitude');
+            $table->text('description')->nullable();
+            $table->decimal('latitude', 10, 8);
+            $table->decimal('longitude', 11, 8);
             $table->timestamps();
         });
     }
+}
+
 
     /**
      * Reverse the migrations.
