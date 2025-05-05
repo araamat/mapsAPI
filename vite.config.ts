@@ -34,11 +34,11 @@ export default defineConfig({
         },
     },
 
-    // 🔽 LISANDUB SEE ⬇️
+    // 🟢 LISA SEE:
     build: {
         manifest: true,
         outDir: 'public/build',
     },
-    base: '/', // oluline, et lingid oleks suhtelised (HTTPS toetus)
 });
+
 
