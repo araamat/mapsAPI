@@ -8,7 +8,7 @@
 - Ilmaandmete kuvamine veebilehel, eelistatult koos visuaalsete elementidega (nt ikoonid või pildid vastavalt ilmastikuoludele).
 - Lisafunktsionaalsus: võimalus otsida ilmaandmeid eri linnade või riikide kohta.
 
-#### **2. Kaardirakendus API liidestus** DONE
+#### **2. Kaardirakendus API liidestus** :white_check_mark:TEHTUD
 - Valida sobiv kaardi API (nt Google Maps, OpenStreetMap, Radar Maps vms).
 - Luua andmebaasitabel `markers`, millel on järgmised väljad: `id`, `name`, `latitude`, `longitude`, `description`, `added`, `edited`.
 - Rakendada markerite haldusfunktsioonid (lisamine, vaatamine, muutmine, kustutamine).
@@ -20,7 +20,7 @@
 
 ---
 
-### **Veebirakenduste arendamine**
+### **Veebirakenduste arendamine** :large_orange_diamond:POOLELI
 #### **3. Blogi ja Kommentaaride haldus** <span style="color: red;">POOLELI</span>
 - Luua blogifunktsionaalsus.
 - Lisada autentimissüsteem (registreerimine ja sisselogimine).
@@ -28,7 +28,7 @@
 - Teostada blogi sissekannete CRUD (postituste lisamine, muutmine, kustutamine ja vaatamine).
 - Lisada võimalus postitustele kommentaare lisada ning administraatori poolt kommentaare hallata (sh kustutada).
 
-#### **4. E-pood ja ostukorvi funktsionaalsus**
+#### **4. E-pood ja ostukorvi funktsionaalsus** :x:POLE ALUSTATUD
 - Luua **toote leht**, kus on vähemalt 9 erinevat toodet (pilt, nimi, hind, kirjeldus, koguse valik).
 - Rakendada **ostukorvi funktsionaalsus**, kus kasutaja saab:
   - Lisada tooteid ostukorvi.
@@ -39,7 +39,7 @@
   - Kui makse on edukas, tühjendatakse ostukorv.
   - Kui makse ebaõnnestub, jäävad tooted ostukorvi alles.
 
-#### **5. API loomine valitud lemmikteema kohta**
+#### **5. API loomine valitud lemmikteema kohta** :x:POLE ALUSTATUD
 - Valida endale huvipakkuv teema ning luua sellele põhinev API.
 - Luua andmebaasitabel `my_favorite_subject`, mille väljad on `id`, `title`, `image`, `description`, ja vähemalt kaks teemale omast lisaandmevälja.
 - Luua **andmete sisestamise vorm** (title, description, image, +2 teema kohast välja).
