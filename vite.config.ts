@@ -7,38 +7,27 @@ import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-    plugins: [
-        laravel({
-            input: ['resources/js/app.ts'],
-            ssr: 'resources/js/ssr.ts',
-            refresh: true,
-        }),
-        vue({
-            template: {
-                transformAssetUrls: {
-                    base: null,
-                    includeAbsolute: false,
-                },
-            },
-        }),
-    ],
-    resolve: {
-        alias: {
-            '@': path.resolve(__dirname, './resources/js'),
-            'ziggy-js': resolve(__dirname, 'vendor/tightenco/ziggy'),
-        },
+  plugins: [
+    laravel({
+      input: ['resources/css/app.css', 'resources/js/app.ts'],
+      ssr: 'resources/js/ssr.ts',
+      refresh: true,
+    }),
+    vue(), // ⬅️ Vajalik, et .vue failid töötaksid
+  ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './resources/js'),
+      'ziggy-js': resolve(__dirname, 'vendor/tightenco/ziggy'),
     },
-    css: {
-        postcss: {
-            plugins: [tailwindcss, autoprefixer],
-        },
+  },
+  css: {
+    postcss: {
+      plugins: [tailwindcss, autoprefixer],
     },
-
-    // 🟢 LISA SEE:
-    build: {
-        manifest: true,
-        outDir: 'public/build',
-    },
+  },
+  build: {
+    manifest: true,
+    outDir: 'public/build',
+  },
 });
-
-
