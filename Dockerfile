@@ -45,9 +45,12 @@ RUN php artisan config:cache \
     && php artisan route:cache \
     && php artisan view:cache
 
+# Add script to wait and stream Laravel log
+COPY wait-for-log.sh /usr/local/bin/wait-for-log.sh
+RUN chmod +x /usr/local/bin/wait-for-log.sh
+
 # Expose port
 EXPOSE 8000
 
-# Start Laravel server AND wait for log file, then stream it
-CMD php artisan serve --host=0.0.0.0 --port=8000 & \
-    bash -c 'while [ ! -f storage/logs/laravel.log ]; do sleep 1; done; tail -f storage/logs/laravel.log'
+# Run Laravel and stream logs when available
+CMD ["wait-for-log.sh"]
