@@ -54,9 +54,7 @@ jobs:
           test -f public/build/manifest.json && echo "✅ manifest.json olemas!" || { echo "❌ manifest.json puudub!"; exit 1; }
 
       - name: Create SQLite database file
-        run: |
-          mkdir -p /var/data
-          touch /var/data/database.sqlite
+        run: touch database/database.sqlite
 
       - name: Fresh migrate (for clean test DB)
         run: php artisan migrate:fresh --force
