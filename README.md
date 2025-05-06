@@ -1,4 +1,4 @@
-# :door:LIVE: 
+# :door:LIVE: https://mapsapi-lgxu.onrender.com/
 
 ### **Hajusrakenduse ülesanded**  
 #### **1. Ilmateenuse API liidestus**  :white_check_mark:TEHTUD
