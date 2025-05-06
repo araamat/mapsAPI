@@ -26,8 +26,5 @@ export default defineConfig({
       plugins: [tailwindcss, autoprefixer],
     },
   },
-  build: {
-    manifest: true,
-    outDir: 'public/build',
-  },
+  
 });

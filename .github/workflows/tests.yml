@@ -45,19 +45,13 @@ jobs:
       - name: Publish Ziggy Configuration
         run: php artisan ziggy:generate
 
-      - name: Build Assets
+      - name: Build Frontend (Vite)
         run: |
-            npm run build || { echo "Build failed"; exit 1; }
-            ls -lah public/build  # Kontrollime, kas build kaust on loodud
-            cat public/build/manifest.json || echo "Manifest not found"  # Kui faili ei ole, kuvatakse sõnum
-
-      - name: Build Frontend
-        run: npm run build
-
-      - name: Ensure Vite manifest exists
-        run: |
-          ls -lah public/build && cat public/build/manifest.json
-          # Täiendavad logimise sammud, et veenduda, et manifesti fail on olemas
+          npm run build
+          echo "✅ Build completed"
+          echo "📦 Kontrollime manifest.json olemasolu:"
+          ls -lah public/build
+          test -f public/build/manifest.json && echo "✅ manifest.json olemas!" || { echo "❌ manifest.json puudub!"; exit 1; }
 
       - name: Fresh migrate (for clean test DB)
         run: php artisan migrate:fresh --force
