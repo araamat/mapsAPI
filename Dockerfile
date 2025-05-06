@@ -48,5 +48,6 @@ RUN php artisan config:cache \
 # Expose port
 EXPOSE 8000
 
-# Start Laravel dev server AND stream the log file
-CMD php artisan serve --host=0.0.0.0 --port=8000 & tail -f storage/logs/laravel.log
+# Start Laravel server AND wait for log file, then stream it
+CMD php artisan serve --host=0.0.0.0 --port=8000 & \
+    bash -c 'while [ ! -f storage/logs/laravel.log ]; do sleep 1; done; tail -f storage/logs/laravel.log'
