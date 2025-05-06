@@ -26,7 +26,7 @@ WORKDIR /var/www
 # Copy application code
 COPY . /var/www
 
-# Set permissions (NB: lisatud bootstrap/cache)
+# Set permissions
 RUN chown -R www-data:www-data /var/www \
     && chmod -R 775 /var/www/storage \
     && chmod -R 775 /var/www/bootstrap/cache
@@ -35,11 +35,8 @@ RUN chown -R www-data:www-data /var/www \
 RUN composer install --no-dev --optimize-autoloader
 RUN npm install && npm run build
 
-# Create empty SQLite DB if missing
+# Create empty SQLite DB if needed
 RUN mkdir -p database && touch database/database.sqlite
-
-# Generate APP_KEY manually (kui puudub)
-RUN if ! grep -q "APP_KEY=" .env; then php artisan key:generate; fi
 
 # Cache Laravel config and routes
 RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
