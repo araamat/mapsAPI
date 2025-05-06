@@ -40,17 +40,17 @@ RUN npm install && npm run build
 # Create SQLite DB file if needed
 RUN mkdir -p database && touch database/database.sqlite
 
-# Cache Laravel configuration
-RUN php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache
+# ❌ DO NOT cache config here — moved to runtime!
+# RUN php artisan config:cache \
+#     && php artisan route:cache \
+#     && php artisan view:cache
 
-# Add script to wait and stream Laravel log
+# Add runtime script for Laravel + logging
 COPY wait-for-log.sh /usr/local/bin/wait-for-log.sh
 RUN chmod +x /usr/local/bin/wait-for-log.sh
 
 # Expose port
 EXPOSE 8000
 
-# Run Laravel and stream logs when available
+# Start Laravel server and stream log (via script)
 CMD ["wait-for-log.sh"]
