@@ -26,23 +26,27 @@ WORKDIR /var/www
 # Copy application code
 COPY . /var/www
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www \
-    && chmod -R 775 /var/www/storage \
-    && chmod -R 775 /var/www/bootstrap/cache
+# Fix permissions (especially for logs and cache)
+RUN mkdir -p /var/www/storage/logs \
+    && mkdir -p /var/www/bootstrap/cache \
+    && chown -R www-data:www-data /var/www \
+    && chmod -R ug+rwx /var/www/storage \
+    && chmod -R ug+rwx /var/www/bootstrap/cache
 
 # Install backend and frontend dependencies
 RUN composer install --no-dev --optimize-autoloader
 RUN npm install && npm run build
 
-# Create empty SQLite DB if needed
+# Create SQLite DB file if needed
 RUN mkdir -p database && touch database/database.sqlite
 
-# Cache Laravel config and routes
-RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
+# Cache Laravel configuration
+RUN php artisan config:cache \
+    && php artisan route:cache \
+    && php artisan view:cache
 
 # Expose port
 EXPOSE 8000
 
-# Start Laravel dev server
+# Start Laravel server
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
