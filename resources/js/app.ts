@@ -1,5 +1,9 @@
 import '../css/app.css';
 
+// ✅ Lisa Axios HTTPS-i sundimiseks
+import axios from 'axios';
+axios.defaults.baseURL = import.meta.env.VITE_APP_URL || 'https://mapsapi-lgxu.onrender.com';
+
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
