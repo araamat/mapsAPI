@@ -45,8 +45,11 @@ RUN php artisan config:cache \
     && php artisan route:cache \
     && php artisan view:cache
 
+# 👇 Laravel logifaili kuvamine buildis (aitab veaotsingul!)
+RUN echo "🔥 Laravel logi algus:" && cat storage/logs/laravel.log || echo "🚫 Logifail puudub või tühi"
+
 # Expose port
 EXPOSE 8000
 
-# Start Laravel server
+# Start Laravel dev server
 CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
