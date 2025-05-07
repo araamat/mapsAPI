@@ -5,65 +5,38 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Store a newly created comment in storage.
      */
     public function store(Post $post, Request $request)
     {
-        $post->comments()->create($request->validate([
-      'comment' => 'required',
-        ]));
-        
+        $data = $request->validate([
+            'comment' => 'required|string',
+        ]);
+
+        $post->comments()->create([
+            'body' => $data['comment'],
+            'user_id' => auth()->id(),
+        ]);
+
+        return redirect()->back(); // ← oluline
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
+     * Remove the specified comment from storage.
      */
     public function destroy(Comment $comment)
     {
-        //
+        // Kontrollime, kas kasutaja on admin või kommentaari autor
+        if (Auth::user()->id === $comment->user_id || Auth::user()->is_admin) {
+            $comment->delete();
+            return response()->json(['message' => 'Kommentaar kustutatud.']);
+        }
+
+        return response()->json(['message' => 'Pole õigusi seda kommentaari kustutada.'], 403);
     }
 }

@@ -1,37 +1,46 @@
 <script setup lang="ts">
 import {
     AlertDialog,
-    AlertDialogAction,
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
     AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogTitle,
-    AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import Button from '@/components/ui/button/Button.vue';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { BreadcrumbItem } from '@/types';
-import { router } from '@inertiajs/vue3';
+import { router, Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
 defineProps(['posts']);
 
 const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Posts',
-        href: '/posts',
-    },
+    { title: 'Posts', href: '/posts' },
 ];
 
-const posttoDelete = ref();
+const posttoDelete = ref<number | null>(null);
+
+const confirmDelete = (id: number) => {
+    console.log('Kustutamiseks valitud ID:', id);
+    posttoDelete.value = id;
+};
 
 const deletePost = () => {
+    if (!posttoDelete.value) return;
+
+    console.log('Kustutame postituse ID:', posttoDelete.value);
+
     router.delete(route('posts.destroy', posttoDelete.value), {
+        preserveScroll: true,
         onSuccess: () => {
-            posttoDelete.value = undefined;
+            console.log('Kustutamine õnnestus');
+            posttoDelete.value = null;
+        },
+        onError: (errors) => {
+            console.error('Kustutamine ebaõnnestus', errors);
         },
     });
 };
@@ -39,40 +48,65 @@ const deletePost = () => {
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbs">
-        <div class="mx-auto my-12 w-full max-w-screen-lg">
-            <div>
-                <h1 class="tracking wide text-2xl font-semibold">Posts</h1>
-                <Button>Add new</Button>
+        <div class="mx-auto my-12 w-full max-w-screen-lg space-y-6">
+            <div class="flex justify-between items-center">
+                <h1 class="tracking-wide text-2xl font-semibold">Posts</h1>
+                <Link :href="route('posts.create')">
+                    <Button>Add new</Button>
+                </Link>
             </div>
+
             <div class="rounded-md border shadow-sm">
                 <Table>
                     <TableHeader>
                         <TableRow>
                             <TableHead>Title</TableHead>
-                            <TableHead class="text-right">Created At</TableHead>
+                            <TableHead>Created At</TableHead>
+                            <TableHead class="text-right">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
                         <TableRow v-for="post in posts" :key="post.id">
-                            <TableCell> {{ post.title }}</TableCell>
-                            <TableCell class="text-right">{{ post.created_at_for_humans }}</TableCell>
+                            <TableCell>{{ post.title }}</TableCell>
+                            <TableCell>{{ post.created_at_for_humans }}</TableCell>
+                            <TableCell class="text-right space-x-2">
+                                <Link :href="route('posts.show', post.id)">
+                                    <Button variant="outline" size="sm">View</Button>
+                                </Link>
+                                <Link :href="route('posts.edit', post.id)">
+                                    <Button variant="outline" size="sm">Edit</Button>
+                                </Link>
+                                <Button
+                                    variant="destructive"
+                                    size="sm"
+                                    @click="confirmDelete(post.id)"
+                                >
+                                    Delete
+                                </Button>
+                            </TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>
             </div>
         </div>
-        <AlertDialog :open="!!posttoDelete">
-            
+
+        <AlertDialog :open="!!posttoDelete" @update:open="posttoDelete = null">
             <AlertDialogContent>
                 <AlertDialogHeader>
-                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                    <AlertDialogTitle>Oled kindel?</AlertDialogTitle>
                     <AlertDialogDescription>
-                        This action cannot be undone. This will permanently delete your account and remove your data from our servers.
+                        See toiming kustutab postituse jäädavalt.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                    <AlertDialogCancel @click="posttoDelete = undefined">Cancel</AlertDialogCancel>
-                    <AlertDialogAction @click="deletePost">Continue</AlertDialogAction>
+                    <AlertDialogCancel @click="posttoDelete = null">Tühista</AlertDialogCancel>
+                    <button
+                        @click="deletePost"
+                        type="button"
+                        class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 text-sm"
+                    >
+                        Kustuta
+                    </button>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

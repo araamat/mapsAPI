@@ -7,6 +7,12 @@ use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
@@ -15,7 +21,8 @@ Route::get('dashboard', DashboardController::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route:: resource('posts', PostController::class)
+// Postituste ressursid
+Route::resource('posts', PostController::class)
     ->middleware(['auth', 'verified'])
     ->names([
         'index' => 'posts.index',
@@ -27,7 +34,8 @@ Route:: resource('posts', PostController::class)
         'destroy' => 'posts.destroy',
     ]);
 
- Route::resource('markers', MarkerController::class)
+// Markerite ressursid
+Route::resource('markers', MarkerController::class)
     ->middleware(['auth', 'verified'])
     ->names([
         'index' => 'markers.index',
@@ -38,7 +46,13 @@ Route:: resource('posts', PostController::class)
         'update' => 'markers.update',
         'destroy' => 'markers.destroy',
     ]);
-Route::post('/comment/{post}', [CommentController::class, 'store'])->name('comments.store');
 
+// Kommentaaride lisamine ja kustutamine
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::post('/comment/{post}', [CommentController::class, 'store'])->name('comments.store');
+    Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+});
+
+// Lisaroute'id
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
