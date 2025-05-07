@@ -29,7 +29,7 @@ const form = useForm({
 
 const show = ref(false);
 const confirmDelete = ref(false);
-const selectedMarker = ref(null);
+const selectedMarker = ref<{ id: number; name: string; description: string; latitude: number; longitude: number } | null>(null);
 const map = ref<RadarMap>();
 
 Radar.initialize('prj_test_pk_a4a4006fc00a17f9f08ec73995e78a0393b3c22f', {});
@@ -44,7 +44,7 @@ onMounted(() => {
 
     map.value = radarMap;
 
-    for (let marker of props.markers) {
+    for (let marker of props.markers as Array<{ id: number; name: string; description: string; latitude: number; longitude: number }>) {
         const radarMarker = Radar.ui
             .marker({ color: '#000257', width: 40, height: 80 })
             .setLngLat([marker.longitude, marker.latitude])

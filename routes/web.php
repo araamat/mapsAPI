@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MarkerController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -51,6 +53,16 @@ Route::resource('markers', MarkerController::class)
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/comment/{post}', [CommentController::class, 'store'])->name('comments.store');
     Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+});
+
+Route::get('/products', [ProductController::class, 'index'])->middleware('auth')->name('products.index');
+
+Route::controller(CartController::class)
+    ->middleware('auth')
+    ->prefix('/cart')
+    ->name('cart.')
+    ->group(function () {
+        Route::post('/add/{product}', 'add')->name('add');   
 });
 
 // Lisaroute'id
