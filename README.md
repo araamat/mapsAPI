@@ -20,7 +20,7 @@
 
 ---
 
-### **Veebirakenduste arendamine** :large_orange_diamond:POOLELI
+### **Veebirakenduste arendamine** :white_check_mark:TEHTUD
 #### **3. Blogi ja Kommentaaride haldus** <span style="color: red;">POOLELI</span>
 - Luua blogifunktsionaalsus.
 - Lisada autentimissüsteem (registreerimine ja sisselogimine).
