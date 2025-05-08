@@ -2,6 +2,7 @@
 
 ### **Hajusrakenduse ülesanded**  
 #### **1. Ilmateenuse API liidestus**  :white_check_mark:TEHTUD
+##### :door:LIVE:https://mapsapi-lgxu.onrender.com/
 - Valida vabalt sobiv ilma API (nt https://openweathermap.org/api või muu sarnane teenus).
 - API-ga ühendumine ja ilmaandmete hankimine (eelistatud formaadis JSON või XML).
 - Andmete lokaalne vahemälu (cache), et vähendada API päringute arvu ja optimeerida kiirust.
