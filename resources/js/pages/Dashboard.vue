@@ -115,9 +115,9 @@ function reallyDeleteMarker() {
       
       <div class="grid auto-rows-min gap-4 md:grid-cols-3">
         <Card>
-          <CardHeader class="flex h-16 flex-row items-center justify-between space-y-0 pb-2">
+          <CardHeader class="flex h-16  flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle class="text-sm font-medium">Weather</CardTitle>
-            <img :src="'http://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png'" alt="Weather icon" class="h-12 w-12" />
+            <img :src="'http://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png'" alt="Weather icon" class="bg-white rounded-lg h-12 w-12" />
           </CardHeader>
           <CardContent>
             <div class="text-2xl font-bold">{{ weather.main.temp }}°C</div>
