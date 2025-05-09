@@ -49,11 +49,14 @@ Alternatiiv: https://mapsapi-lgxu.onrender.com/products
   - Kui makse ebaõnnestub, jäävad tooted ostukorvi alles.
 
 #### **5. API loomine valitud lemmikteema kohta** :x:POOLELI
-#### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/products
+#### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/movies
 Alternatiiv: https://mapsapi-lgxu.onrender.com/
-- Valida endale huvipakkuv teema ning luua sellele põhinev API.
-- Luua andmebaasitabel `my_favorite_subject`, mille väljad on `id`, `title`, `image`, `description`, ja vähemalt kaks teemale omast lisaandmevälja.
-- Luua **andmete sisestamise vorm** (title, description, image, +2 teema kohast välja).
-- Luua JSON API, mis väljastab sisestatud andmeid koos vähemalt ühe parameetriga (nt `limit`, et piirata andmete hulka).
-- Rakendada **veebileht**, mis kuvab teiste kasutajate lisatud teemasid.
-- Lisada **andmete vahemäluga salvestamine (cache)**, et optimeerida API päringuid.
+- Valida endale isiklikult huvipakkuv teema (nt raamatud, filmid, toiduretseptid, matkamine vms) ning luua sellele põhinev API.
+- Luua andmebaasitabel my_favorite_subject, mille väljad on id, title, image, description, ja vähemalt kaks teemale omast lisaandmevälja (nt raamatute puhul author ja publication_year).
+- Luua kasutajasõbralik andmete sisestamise vorm, mis võimaldab kõigi vajalike väljade täitmist (title, description, image, +2 teemaspetsiifilist välja).
+- Luua dokumenteeritud JSON API, mis:
+    - Väljastab sisestatud andmeid koos filtreerimis- ja sorteerimisfunktsioonidega
+    - Võimaldab piirata tagastatavate kirjete arvu (parameetriga limit)
+    - Pakub otsingufunktsionaalsust vähemalt ühe välja põhjal
+  Teha veebileht, kus on näha nii enda kui ka teiste lisatud sisu ning võimalus neid sirvida ja filtreerida.
+- Lisada andmete vahemäluga salvestamine (cache), et optimeerida API päringuid ja parandada rakenduse jõudlust.
