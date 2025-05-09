@@ -60,9 +60,8 @@ const deletePost = () => {
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHead>Title</TableHead>
-                            <TableHead>Created At</TableHead>
-                            <TableHead class="text-right">Actions</TableHead>
+                            <TableHead class="font-bold">Title</TableHead>
+                            <TableHead class="font-bold">Created At</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -71,17 +70,17 @@ const deletePost = () => {
                             <TableCell>{{ post.created_at_for_humans }}</TableCell>
                             <TableCell class="text-right space-x-2">
                                 <Link :href="route('posts.show', post.id)">
-                                    <Button variant="outline" size="sm">View</Button>
+                                    <Button class="bg-blue-500 hover:bg-blue-600 text-white border-none" variant="outline" size="sm">View post</Button>
                                 </Link>
                                 <Link :href="route('posts.edit', post.id)">
-                                    <Button variant="outline" size="sm">Edit</Button>
+                                    <Button class="bg-yellow-500 hover:bg-yellow-600 text-white border-none" variant="outline" size="sm">Edit post</Button>
                                 </Link>
                                 <Button
                                     variant="destructive"
                                     size="sm"
                                     @click="confirmDelete(post.id)"
                                 >
-                                    Delete
+                                    Delete post
                                 </Button>
                             </TableCell>
                         </TableRow>
