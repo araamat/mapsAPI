@@ -2,7 +2,7 @@
 **Alternatiiv: https://mapsapi-lgxu.onrender.com/**
 
 ### **Hajusrakenduse ülesanded**  
-#### **1. Ilmateenuse API liidestus**  :white_check_mark:TEHTUD
+### **1. Ilmateenuse API liidestus**  :white_check_mark:TEHTUD
 #### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/dashboard
 **Alternatiiv: https://mapsapi-lgxu.onrender.com/dashboard**
 - Valida vabalt sobiv ilma API (nt https://openweathermap.org/api või muu sarnane teenus).
