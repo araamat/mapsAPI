@@ -24,6 +24,12 @@ interface Product {
   updated_at: string;
 }
 
+const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('et', {
+        style: 'currency',
+        currency: 'EUR',
+    }).format(amount);
+};
 const props = defineProps<{ products: Product[] }>();
 
 const addToCart = (product:Product) => {
@@ -83,7 +89,7 @@ const clear = () => {
             {{ product.description }}
           </CardDescription>
           <p class="text-lg font-semibold text-blue-700 mb-2">
-            €{{ product.price }}
+            €{{ formatCurrency(product.price) }}
           </p>
         </CardHeader>
 

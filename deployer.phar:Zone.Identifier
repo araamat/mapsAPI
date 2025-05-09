@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://deployer.org/download
+HostUrl=https://deployer.org/releases/v7.5.12/deployer.phar
