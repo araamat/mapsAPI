@@ -18,7 +18,7 @@ const updateCart = (id: number, quantity: number | string) => {
     });
 };
 // Provided cart data with image URLs
-const props = defineProps({
+ defineProps({
     cart: Object,
 });
 
