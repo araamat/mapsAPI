@@ -31,7 +31,7 @@ public function add(Request $request, Product $product)
         return redirect()->back()->with('success', 'Product added to cart');
 }
 
-public function remove()
+public function removeAll()
 {
     // Add product to cart
 }
@@ -59,5 +59,19 @@ public function update(Request $request)
 
     return redirect()->back();
 }
+
+public function remove(Request $request)
+{
+    $cart = session()->get('cart', []);
+    $id = $request->input('id');
+
+    if (isset($cart[$id])) {
+        unset($cart[$id]);
+        session()->put('cart', $cart);
+    }
+
+    return redirect()->back()->with('success', 'Product removed from cart');
+}
+
 
 }

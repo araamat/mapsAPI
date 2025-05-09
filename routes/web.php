@@ -67,6 +67,7 @@ Route::controller(CartController::class)
         Route::get('/', 'view')->name('checkout');
         Route::post('/clear', 'clear')->name('clear'); 
         Route::post('/update', 'update')->name('update');
+        Route::delete('/remove', 'remove')->name('remove'); //SELLE LISASIN SIIA
 
 });
 
