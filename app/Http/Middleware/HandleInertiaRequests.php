@@ -39,6 +39,12 @@ class HandleInertiaRequests extends Middleware
     {
         [$message, $author] = str(Inspiring::quotes()->random())->explode('-');
 
+        $cart = $request->session()->get('cart', null);
+
+        $count = $cart ? collect($cart)->sum('quantity') : 0;
+
+        $cartTotal = collect($cart)->sum(fn ($item) => $item['price'] * $item['quantity']);
+        
         return [
             ...parent::share($request),
             'name' => config('app.name'),
@@ -46,7 +52,9 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
-            'cart'=> $request->session()->get('cart', null),
+            'cart'=> $cart,
+            'cartCount' => $count,
+            'cartTotal' => $cartTotal,
             'ziggy' => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),

@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MarkerController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -62,8 +63,19 @@ Route::controller(CartController::class)
     ->prefix('/cart')
     ->name('cart.')
     ->group(function () {
-        Route::post('/add/{product}', 'add')->name('add');   
+        Route::post('/add/{product}', 'add')->name('add');  
+        Route::get('/', 'view')->name('checkout');
+        Route::post('/clear', 'clear')->name('clear'); 
+        Route::post('/update', 'update')->name('update');
+
 });
+
+// 5 ülesanne ise
+
+Route::get('/movies', [MovieController::class, 'index'])->middleware('auth')->name('movies.index');
+
+
+
 
 // Lisaroute'id
 require __DIR__.'/settings.php';

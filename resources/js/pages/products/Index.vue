@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { hydrate, reactive } from 'vue';
 import axios from 'axios';
-import { router } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
 import AppLayout from '@/layouts/AppLayout.vue';
 import {
   Card,
@@ -11,7 +11,8 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
-import { ShoppingCart } from 'lucide-vue-next';
+import { ShoppingCart, Trash } from 'lucide-vue-next';
+import { Button } from '@/components/ui/button';
 
 interface Product {
   id: number;
@@ -32,13 +33,19 @@ const addToCart = (product:Product) => {
    
 };
 
+const clear = () => {
+    router.post(route('cart.clear'));
+};
+ 
+
 </script>
 
 <template>
   <AppLayout>
-    <div class="flex justify-end p-4">
-      {{ $page.props.cart }}
-        <button
+    <div class="flex justify-end p-4 gap-4">
+        <Link
+        
+        :href="route('cart.checkout')"
         size="icon"
         variant="outline"
         class="relative rounded-full border border-gray-300 p-2 hover:bg-gray-100 transition"
@@ -49,10 +56,17 @@ const addToCart = (product:Product) => {
         <span
           class="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-semibold px-1.5 py-0.5 rounded-full"
         >
-          {{ Object.entries($page.props.cart ?? {})?.length }}
+          {{ $page.props.cartCount }}
         </span>
-      </button>
-    </div>
+      </Link>
+
+      <Button @click="clear" size="icon" variant="destructive" class="relative" >
+        <Trash class="size-5"></Trash>
+
+      </Button>
+      </div>
+
+      
     <div class="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         
       <Card v-for="product in props.products" :key="product.id" class="h-full flex flex-col">
