@@ -31,7 +31,7 @@
 - Teostada blogi sissekannete CRUD (postituste lisamine, muutmine, kustutamine ja vaatamine).
 - Lisada võimalus postitustele kommentaare lisada ning administraatori poolt kommentaare hallata (sh kustutada).
 
-#### **4. E-pood ja ostukorvi funktsionaalsus** :x:POOLELI
+#### **4. E-pood ja ostukorvi funktsionaalsus** :white_check_mark:TEHTUD
 ##### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/products (või https://mapsapi-lgxu.onrender.com/products)
 - Luua **toote leht**, kus on vähemalt 9 erinevat toodet (pilt, nimi, hind, kirjeldus, koguse valik).
 - Rakendada **ostukorvi funktsionaalsus**, kus kasutaja saab:
