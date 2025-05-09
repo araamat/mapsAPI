@@ -7,6 +7,7 @@ use App\Http\Controllers\MarkerController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -70,6 +71,14 @@ Route::controller(CartController::class)
         Route::delete('/remove', 'remove')->name('remove'); //SELLE LISASIN SIIA
 
 });
+
+
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
+Route::get('/payment/success', [CheckoutController::class, 'success'])->name('payment.success');
+Route::get('/payment/cancel', [CheckoutController::class, 'cancel'])->name('payment.cancel');
+
 
 // 5 ülesanne ise
 

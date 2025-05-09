@@ -11,20 +11,22 @@ const formatCurrency = (amount: number) => {
   }).format(amount);
 };
 
-// Koguse uuendamine
 const updateCart = (id: number | string, quantity: number | string) => {
   router.post(route('cart.update'), {
-    id: id,
-    quantity: quantity,
+    id,
+    quantity,
   });
 };
 
-// Eemaldamine ostukorvist
 const removeFromCart = (id: number | string) => {
   router.delete(route('cart.remove'), {
     data: { id },
     preserveScroll: true,
   });
+};
+
+const goToCheckout = () => {
+  router.visit(route('checkout.index'));
 };
 </script>
 
@@ -41,32 +43,26 @@ const removeFromCart = (id: number | string) => {
               <th class="border-b px-4 py-2">Price</th>
               <th class="border-b px-4 py-2">Quantity</th>
               <th class="border-b px-4 py-2">Total</th>
-              <th class="border-b px-4 py-2 text-right"></th>
+              <th class="border-b px-4 py-2 text-right">Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(item, id) in $page.props.cart" :key="id">
               <td class="border-b px-4 py-2">
-                <img
-                  :src="item.image"
-                  alt="Product Image"
-                  class="h-16 w-16 rounded object-cover"
-                />
+                <img :src="item.image" alt="Product Image" class="h-16 w-16 rounded object-cover" />
               </td>
               <td class="border-b px-4 py-2">{{ item.name }}</td>
               <td class="border-b px-4 py-2">{{ formatCurrency(item.price) }}</td>
               <td class="border-b px-4 py-2">
                 <Input
                   class="w-full max-w-24 text-right"
-                  @update:model-value="(value) => updateCart(id, value)"
                   type="number"
-                  :min="0"
+                  :min="1"
                   :model-value="item.quantity"
+                  @update:model-value="(val) => updateCart(id, val)"
                 />
               </td>
-              <td class="border-b px-4 py-2">
-                {{ formatCurrency(item.price * item.quantity) }}
-              </td>
+              <td class="border-b px-4 py-2">{{ formatCurrency(item.price * item.quantity) }}</td>
               <td class="border-b px-4 py-2 text-right">
                 <button
                   @click="removeFromCart(id)"
@@ -81,13 +77,12 @@ const removeFromCart = (id: number | string) => {
         </table>
 
         <div class="mt-4 flex justify-end">
-          <p class="text-lg font-bold">
-            Total: {{ formatCurrency($page.props.cartTotal) }}
-          </p>
+          <p class="text-lg font-bold">Total: {{ formatCurrency($page.props.cartTotal) }}</p>
         </div>
 
         <div class="mt-6 flex justify-end">
           <button
+            @click="goToCheckout"
             class="rounded bg-blue-600 px-6 py-2 text-white hover:bg-blue-700 transition"
           >
             Proceed to Payment
