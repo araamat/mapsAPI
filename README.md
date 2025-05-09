@@ -27,7 +27,7 @@ Alternatiiv: https://mapsapi-lgxu.onrender.com/dashboard
 
 ### **Veebirakenduste arendamine** :white_check_mark:TEHTUD
 #### **3. Blogi ja Kommentaaride haldus** <span style="color: red;">POOLELI</span>
-##### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/posts
+#### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/posts
 Alternatiiv: https://mapsapi-lgxu.onrender.com/posts
 - Luua blogifunktsionaalsus.
 - Lisada autentimissüsteem (registreerimine ja sisselogimine).
@@ -36,7 +36,7 @@ Alternatiiv: https://mapsapi-lgxu.onrender.com/posts
 - Lisada võimalus postitustele kommentaare lisada ning administraatori poolt kommentaare hallata (sh kustutada).
 
 #### **4. E-pood ja ostukorvi funktsionaalsus** :white_check_mark:TEHTUD
-##### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/products
+#### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/products
 Alternatiiv: https://mapsapi-lgxu.onrender.com/products
 - Luua **toote leht**, kus on vähemalt 9 erinevat toodet (pilt, nimi, hind, kirjeldus, koguse valik).
 - Rakendada **ostukorvi funktsionaalsus**, kus kasutaja saab:
