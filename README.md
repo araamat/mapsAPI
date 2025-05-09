@@ -24,7 +24,7 @@
 
 ### **Veebirakenduste arendamine** :white_check_mark:TEHTUD
 #### **3. Blogi ja Kommentaaride haldus** <span style="color: red;">POOLELI</span>
-##### :door:LIVE: https://mapsapi-lgxu.onrender.com/posts 
+##### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/posts või (https://mapsapi-lgxu.onrender.com/posts)
 - Luua blogifunktsionaalsus.
 - Lisada autentimissüsteem (registreerimine ja sisselogimine).
 - Luua andmebaasitabel **blogi postitustele**, mille väljad on `id`, `title`, `description`, `created_at`, `updated_at`.
@@ -32,7 +32,7 @@
 - Lisada võimalus postitustele kommentaare lisada ning administraatori poolt kommentaare hallata (sh kustutada).
 
 #### **4. E-pood ja ostukorvi funktsionaalsus** :x:POOLELI
-##### :door:LIVE: https://mapsapi-lgxu.onrender.com/products
+##### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/products (või https://mapsapi-lgxu.onrender.com/products)
 - Luua **toote leht**, kus on vähemalt 9 erinevat toodet (pilt, nimi, hind, kirjeldus, koguse valik).
 - Rakendada **ostukorvi funktsionaalsus**, kus kasutaja saab:
   - Lisada tooteid ostukorvi.
