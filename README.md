@@ -49,6 +49,7 @@ Alternatiiv: https://mapsapi-lgxu.onrender.com/products
   - Kui makse ebaõnnestub, jäävad tooted ostukorvi alles.
 
 #### **5. API loomine valitud lemmikteema kohta** :x:POOLELI
+#### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/products
 Alternatiiv: https://mapsapi-lgxu.onrender.com/
 - Valida endale huvipakkuv teema ning luua sellele põhinev API.
 - Luua andmebaasitabel `my_favorite_subject`, mille väljad on `id`, `title`, `image`, `description`, ja vähemalt kaks teemale omast lisaandmevälja.
