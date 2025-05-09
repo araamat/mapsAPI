@@ -3,7 +3,8 @@
 
 ### **Hajusrakenduse ülesanded**  
 #### **1. Ilmateenuse API liidestus**  :white_check_mark:TEHTUD
-##### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/dashboard (või https://mapsapi-lgxu.onrender.com/dashboard)
+#### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/dashboard
+**Alternatiiv: https://mapsapi-lgxu.onrender.com/dashboard**
 - Valida vabalt sobiv ilma API (nt https://openweathermap.org/api või muu sarnane teenus).
 - API-ga ühendumine ja ilmaandmete hankimine (eelistatud formaadis JSON või XML).
 - Andmete lokaalne vahemälu (cache), et vähendada API päringute arvu ja optimeerida kiirust.
@@ -11,7 +12,8 @@
 - Lisafunktsionaalsus: võimalus otsida ilmaandmeid eri linnade või riikide kohta.
 
 #### **2. Kaardirakendus API liidestus** :white_check_mark:TEHTUD
-##### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/dashboard (või https://mapsapi-lgxu.onrender.com/dashboard)
+#### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/dashboard
+**Alternatiiv: https://mapsapi-lgxu.onrender.com/dashboard**
 - Valida sobiv kaardi API (nt Google Maps, OpenStreetMap, Radar Maps vms).
 - Luua andmebaasitabel `markers`, millel on järgmised väljad: `id`, `name`, `latitude`, `longitude`, `description`, `added`, `edited`.
 - Rakendada markerite haldusfunktsioonid (lisamine, vaatamine, muutmine, kustutamine).
