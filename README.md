@@ -1,4 +1,5 @@
-# :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/ (või https://mapsapi-lgxu.onrender.com/)
+# :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/ 
+## (või https://mapsapi-lgxu.onrender.com/)
 
 ### **Hajusrakenduse ülesanded**  
 #### **1. Ilmateenuse API liidestus**  :white_check_mark:TEHTUD
