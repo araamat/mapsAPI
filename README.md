@@ -50,7 +50,7 @@ Alternatiiv: https://mapsapi-lgxu.onrender.com/products
 
 #### **5. API loomine valitud lemmikteema kohta** :white_check_mark:TEHTUD
 #### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/movies
-https://hajus.tak23mand.itmajakas.ee/api/favourite/07b4cc44-9042-4944-b1dc-56eac757ca4f
+Alternatiiv: https://mapsapi-lgxu.onrender.com/movies
 - `GET /api/movies`
   - `?search=...`
   - `?sort_by=...&sort_order=asc|desc`
