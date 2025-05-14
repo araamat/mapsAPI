@@ -48,9 +48,14 @@ Alternatiiv: https://mapsapi-lgxu.onrender.com/products
   - Kui makse on edukas, tühjendatakse ostukorv.
   - Kui makse ebaõnnestub, jäävad tooted ostukorvi alles.
 
-#### **5. API loomine valitud lemmikteema kohta** :x:POOLELI
+#### **5. API loomine valitud lemmikteema kohta** :white_check_mark:TEHTUD
 #### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/movies
-Alternatiiv: https://mapsapi-lgxu.onrender.com/
+https://hajus.tak23mand.itmajakas.ee/api/favourite/07b4cc44-9042-4944-b1dc-56eac757ca4f
+**- `GET /api/movies`
+  - `?search=...`
+  - `?sort_by=...&sort_order=asc|desc`
+  - `?limit=...`
+Enda filmide all kuvan slackis olnud Kert Mänd api andmeid: https://hajus.tak23mand.itmajakas.ee/api/favourite/07b4cc44-9042-4944-b1dc-56eac757ca4f**
 - Valida endale isiklikult huvipakkuv teema (nt raamatud, filmid, toiduretseptid, matkamine vms) ning luua sellele põhinev API.
 - Luua andmebaasitabel my_favorite_subject, mille väljad on id, title, image, description, ja vähemalt kaks teemale omast lisaandmevälja (nt raamatute puhul author ja publication_year).
 - Luua kasutajasõbralik andmete sisestamise vorm, mis võimaldab kõigi vajalike väljade täitmist (title, description, image, +2 teemaspetsiifilist välja).
