@@ -69,4 +69,4 @@ Minu API-le https://hajus.ta23raamat.itmajakas.ee/...
 - Lisada andmete vahemäluga salvestamine (cache), et optimeerida API päringuid ja parandada rakenduse jõudlust.
 
 
-**Siit saan kõvad boonudsed :) : https://mapsapi-lgxu.onrender.com/**
+**Siit saan kõvad boonused, sest suutsin alternatiivsesse kohta ka majutada :) : https://mapsapi-lgxu.onrender.com/**
