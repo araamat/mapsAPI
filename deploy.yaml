@@ -5,12 +5,21 @@ config:
   repository: 'git@github.com:araamat/mapsAPI.git'
   keep_releases: 2
 
+# hosts:
+#   stage:
+#     hostname: 'ta23raamat.itmajakas.ee'
+#     http_user: virt123055
+#     remote_user: virt123055
+#     deploy_path: '~/domeenid/www.ta23raamat.itmajakas.ee/hajus'
+
 hosts:
   stage:
     hostname: 'ta23raamat.itmajakas.ee'
     http_user: virt123055
     remote_user: virt123055
     deploy_path: '~/domeenid/www.ta23raamat.itmajakas.ee/hajus'
+    identity_file: '~/.ssh/id_rsa'
+
 
 tasks:
   npm:production:

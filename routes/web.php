@@ -94,7 +94,7 @@ Route::get('/movies/data', [MovieController::class, 'api'])->middleware('auth')-
 // External movies (public API)
 Route::get('/movies/external', [MovieController::class, 'external'])->middleware('auth')->name('movies.external');
 
-Route::get('/', [MovieController::class, 'combined'])->name('home');
+
 
 Route::get('/api/movies', [MovieController::class, 'api']);
 
