@@ -1,13 +1,14 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MarkerController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CheckoutController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,11 +22,12 @@ Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
 
-Route::get('dashboard', DashboardController::class)
+// Dashboard
+Route::get('/dashboard', DashboardController::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-// Postituste ressursid
+// Posts
 Route::resource('posts', PostController::class)
     ->middleware(['auth', 'verified'])
     ->names([
@@ -38,7 +40,7 @@ Route::resource('posts', PostController::class)
         'destroy' => 'posts.destroy',
     ]);
 
-// Markerite ressursid
+// Markers
 Route::resource('markers', MarkerController::class)
     ->middleware(['auth', 'verified'])
     ->names([
@@ -51,14 +53,16 @@ Route::resource('markers', MarkerController::class)
         'destroy' => 'markers.destroy',
     ]);
 
-// Kommentaaride lisamine ja kustutamine
+// Comments
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/comment/{post}', [CommentController::class, 'store'])->name('comments.store');
     Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });
 
+// Products
 Route::get('/products', [ProductController::class, 'index'])->middleware('auth')->name('products.index');
 
+// Cart
 Route::controller(CartController::class)
     ->middleware('auth')
     ->prefix('/cart')
@@ -68,22 +72,31 @@ Route::controller(CartController::class)
         Route::get('/', 'view')->name('checkout');
         Route::post('/clear', 'clear')->name('clear'); 
         Route::post('/update', 'update')->name('update');
-        Route::delete('/remove', 'remove')->name('remove'); //SELLE LISASIN SIIA
+        Route::delete('/remove', 'remove')->name('remove');
+    });
 
-});
-
-
-
+// Checkout
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
 Route::get('/payment/success', [CheckoutController::class, 'success'])->name('payment.success');
 Route::get('/payment/cancel', [CheckoutController::class, 'cancel'])->name('payment.cancel');
 
+// --- MOVIES SECTION --- //
 
-// 5 ülesanne ise
-
+// Movie Inertia pages
 Route::get('/movies', [MovieController::class, 'index'])->middleware('auth')->name('movies.index');
+Route::get('/movies/create', [MovieController::class, 'create'])->middleware(['auth', 'verified'])->name('movies.create');
+Route::post('/movies', [MovieController::class, 'store'])->middleware(['auth', 'verified'])->name('movies.store');
 
+// Movie JSON API with search, sort, limit, cache
+Route::get('/movies/data', [MovieController::class, 'api'])->middleware('auth')->name('movies.api');
+
+// External movies (public API)
+Route::get('/movies/external', [MovieController::class, 'external'])->middleware('auth')->name('movies.external');
+
+Route::get('/', [MovieController::class, 'combined'])->name('home');
+
+Route::get('/api/movies', [MovieController::class, 'api']);
 
 
 
