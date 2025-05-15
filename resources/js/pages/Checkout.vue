@@ -12,13 +12,15 @@ const form = ref({
 const processing = ref(false);
 
 const submit = () => {
+  if (processing.value) return;
   processing.value = true;
 
   const formElement = document.createElement('form');
   formElement.method = 'POST';
   formElement.action = route('checkout.process');
+  formElement.acceptCharset = 'UTF-8';
+  formElement.enctype = 'application/x-www-form-urlencoded';
 
-  // Lisa CSRF token meta tagist
   const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
   if (token) {
     const csrfInput = document.createElement('input');
@@ -28,7 +30,6 @@ const submit = () => {
     formElement.appendChild(csrfInput);
   }
 
-  // Lisa vormi andmed
   for (const [key, value] of Object.entries(form.value)) {
     const input = document.createElement('input');
     input.type = 'hidden';
@@ -39,7 +40,11 @@ const submit = () => {
 
   document.body.appendChild(formElement);
   formElement.submit();
+
+  setTimeout(() => formElement.remove(), 5000); // cleanup (optional)
 };
+
+
 </script>
 
 <template>
