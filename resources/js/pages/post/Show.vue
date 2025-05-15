@@ -16,8 +16,10 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 const form = useForm({
-    comment: ''
+    content: '',
+    post_id: props.post.id
 });
+
 
 const submit = () => {
     form.post(route('comments.store', props.post.id), {
@@ -56,7 +58,8 @@ const minutesAgo = (dateStr: string): string => {
             <!-- Comment form -->
             <form @submit.prevent="submit">
                 <div class="relative">
-                    <Textarea v-model="form.comment" class="w-full h-full" placeholder="Lisa kommentaar..." />
+                    <Textarea v-model="form.content" class="w-full h-full" placeholder="Lisa kommentaar..." />
+
                     <Button class="absolute bottom-4 right-4 z-10">Postita</Button>
                 </div>
             </form>

@@ -3,40 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
-use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class CommentController extends Controller
 {
-    /**
-     * Store a newly created comment in storage.
-     */
-    public function store(Post $post, Request $request)
+    use AuthorizesRequests;
+    public function store(Request $request)
     {
-        $data = $request->validate([
-            'comment' => 'required|string',
+        $request->validate([
+            'content' => 'required|string|max:1000',
+            'post_id' => 'required|exists:posts,id',
         ]);
 
-        $post->comments()->create([
-            'body' => $data['comment'],
-            'user_id' => auth()->id(),
+        $request->user()->comments()->create([
+            'post_id' => $request->post_id,
+            'body' => $request->content,
         ]);
 
-        return redirect()->back(); // ← oluline
+        return redirect()->back()->with('success', 'Kommentaar lisatud!');
     }
 
-    /**
-     * Remove the specified comment from storage.
-     */
     public function destroy(Comment $comment)
     {
-        // Kontrollime, kas kasutaja on admin või kommentaari autor
-        if (Auth::user()->id === $comment->user_id || Auth::user()->is_admin) {
-            $comment->delete();
-            return response()->json(['message' => 'Kommentaar kustutatud.']);
-        }
+        $this->authorize('delete', $comment); // 👈 Ainult adminil lubatud
 
-        return response()->json(['message' => 'Pole õigusi seda kommentaari kustutada.'], 403);
+        $comment->delete();
+
+        return redirect()->back()->with('success', 'Kommentaar kustutatud!');
     }
 }

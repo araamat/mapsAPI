@@ -24,19 +24,15 @@ const breadcrumbs: BreadcrumbItem[] = [
 const posttoDelete = ref<number | null>(null);
 
 const confirmDelete = (id: number) => {
-    console.log('Kustutamiseks valitud ID:', id);
     posttoDelete.value = id;
 };
 
 const deletePost = () => {
     if (!posttoDelete.value) return;
 
-    console.log('Kustutame postituse ID:', posttoDelete.value);
-
     router.delete(route('posts.destroy', posttoDelete.value), {
         preserveScroll: true,
         onSuccess: () => {
-            console.log('Kustutamine õnnestus');
             posttoDelete.value = null;
         },
         onError: (errors) => {
@@ -62,6 +58,7 @@ const deletePost = () => {
                         <TableRow>
                             <TableHead class="font-bold">Title</TableHead>
                             <TableHead class="font-bold">Created At</TableHead>
+                            <TableHead class="font-bold text-right">Actions</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -72,16 +69,19 @@ const deletePost = () => {
                                 <Link :href="route('posts.show', post.id)">
                                     <Button class="bg-blue-500 hover:bg-blue-600 text-white border-none" variant="outline" size="sm">View post</Button>
                                 </Link>
-                                <Link :href="route('posts.edit', post.id)">
-                                    <Button class="bg-yellow-500 hover:bg-yellow-600 text-white border-none" variant="outline" size="sm">Edit post</Button>
-                                </Link>
-                                <Button
-                                    variant="destructive"
-                                    size="sm"
-                                    @click="confirmDelete(post.id)"
-                                >
-                                    Delete post
-                                </Button>
+
+                                <template v-if="post.canManage">
+                                    <Link :href="route('posts.edit', post.id)">
+                                        <Button class="bg-yellow-500 hover:bg-yellow-600 text-white border-none" variant="outline" size="sm">Edit post</Button>
+                                    </Link>
+                                    <Button
+                                        variant="destructive"
+                                        size="sm"
+                                        @click="confirmDelete(post.id)"
+                                    >
+                                        Delete post
+                                    </Button>
+                                </template>
                             </TableCell>
                         </TableRow>
                     </TableBody>

@@ -57,7 +57,8 @@ class CheckoutController extends Controller
             'cancel_url' => env('STRIPE_CANCEL_URL'),
         ]);
 
-        return redirect($session->url);
+        return response()->json(['url' => $session->url]);
+
     }
 
     // Makse õnnestus – tühjenda ostukorv

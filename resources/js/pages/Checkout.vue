@@ -1,58 +1,53 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { Link } from '@inertiajs/vue3';
+import { ref, onMounted } from 'vue';
+import { useForm, usePage } from '@inertiajs/vue3';
 import AppLayout from '@/layouts/AppLayout.vue';
+import { Link } from '@inertiajs/vue3';
+import axios from 'axios';
 
+const page = usePage();
 
-const form = ref({
+onMounted(() => {
+  if (page.props.flash?.force_reload) {
+    location.reload();
+  }
+});
+
+const form = useForm({
   first_name: '',
   last_name: '',
   email: '',
   phone: '',
 });
 
-const processing = ref(false);
+const submit = async () => {
+  if (form.processing) return;
 
-const submit = () => {
-  if (processing.value) return;
-  processing.value = true;
+  form.processing = true;
 
-  const formElement = document.createElement('form');
-  formElement.method = 'POST';
-  formElement.action = route('checkout.process');
-  formElement.acceptCharset = 'UTF-8';
-  formElement.enctype = 'application/x-www-form-urlencoded';
-
-  const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-  if (token) {
-    const csrfInput = document.createElement('input');
-    csrfInput.type = 'hidden';
-    csrfInput.name = '_token';
-    csrfInput.value = token;
-    formElement.appendChild(csrfInput);
+  try {
+    const response = await axios.post(route('checkout.process'), form.data());
+    if (response.data?.url) {
+      window.location.href = response.data.url;
+    } else {
+      alert('Unexpected response from server');
+    }
+  } catch (error) {
+    console.error(error);
+    alert('Something went wrong. Please try again.');
+  } finally {
+    form.processing = false;
   }
-
-  for (const [key, value] of Object.entries(form.value)) {
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = key;
-    input.value = value;
-    formElement.appendChild(input);
-  }
-
-  document.body.appendChild(formElement);
-  formElement.submit();
-
-  setTimeout(() => formElement.remove(), 5000);
 };
+
 </script>
 
 <template>
   <AppLayout>
-    <div class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md">
+    <div class="max-w-2xl w-full mx-auto p-8 bg-white rounded-lg shadow-md">
       <h1 class="text-2xl font-bold mb-6">Checkout</h1>
 
-      <!-- ⚠️ Veateade kui 419 või muu failis -->
+      <!-- Veateade, kui olemas -->
       <div v-if="$page.props.flash?.error" class="mb-4 p-3 bg-red-100 text-red-800 rounded">
         {{ $page.props.flash.error }}
       </div>
@@ -108,10 +103,10 @@ const submit = () => {
 
           <button
             type="submit"
-            :disabled="processing"
+            :disabled="form.processing"
             class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
           >
-            {{ processing ? 'Redirecting to Stripe...' : 'Pay with Stripe' }}
+            {{ form.processing ? 'Redirecting to Stripe...' : 'Pay with Stripe' }}
           </button>
         </div>
       </form>
