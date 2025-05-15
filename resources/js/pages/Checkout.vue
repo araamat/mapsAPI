@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { Link } from '@inertiajs/vue3';
 import AppLayout from '@/layouts/AppLayout.vue';
+
 
 const form = ref({
   first_name: '',
@@ -41,16 +43,19 @@ const submit = () => {
   document.body.appendChild(formElement);
   formElement.submit();
 
-  setTimeout(() => formElement.remove(), 5000); // cleanup (optional)
+  setTimeout(() => formElement.remove(), 5000);
 };
-
-
 </script>
 
 <template>
   <AppLayout>
     <div class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md">
       <h1 class="text-2xl font-bold mb-6">Checkout</h1>
+
+      <!-- ⚠️ Veateade kui 419 või muu failis -->
+      <div v-if="$page.props.flash?.error" class="mb-4 p-3 bg-red-100 text-red-800 rounded">
+        {{ $page.props.flash.error }}
+      </div>
 
       <form @submit.prevent="submit" class="space-y-4">
         <div>
@@ -93,7 +98,14 @@ const submit = () => {
           />
         </div>
 
-        <div class="text-right pt-4">
+        <div class="flex justify-between items-center pt-4">
+          <Link
+            href="/cart"
+            class="text-sm text-gray-600 hover:underline"
+          >
+            ← Back to Cart
+          </Link>
+
           <button
             type="submit"
             :disabled="processing"
