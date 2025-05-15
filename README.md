@@ -52,7 +52,7 @@ Logimiseks võid kasutada:
 #### **5. API loomine valitud lemmikteema kohta** :white_check_mark:TEHTUD
 #### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/movies
 
-Minu API-le https://hajus.ta23raamat.itmajakas.ee/...
+Minu API-le https://hajus.ta23raamat.itmajakas.ee/api/movies
 - `GET /api/movies`
   - `?search=...`
   - `?sort_by=...&sort_order=asc|desc`
