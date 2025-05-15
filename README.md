@@ -1,6 +1,6 @@
 # :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/
 Logimiseks võid kasutada: 
-- test@test.ee (nii kasutaja kui ka parool)
+- test@test.ee (nii kasutaja kui ka parool) **ADMIN KASUTAJA**
 
 
 ### **Hajusrakenduse ülesanded**  
@@ -29,6 +29,7 @@ Logimiseks võid kasutada:
 #### **3. Blogi ja Kommentaaride haldus** :white_check_mark:TEHTUD
 #### :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/posts
 
+**Siin ma selle jätsin, et kasutaja saab ise ka oma postitusi jne hallata aga teised saavad ainult näha**
 - Luua blogifunktsionaalsus.
 - Lisada autentimissüsteem (registreerimine ja sisselogimine).
 - Luua andmebaasitabel **blogi postitustele**, mille väljad on `id`, `title`, `description`, `created_at`, `updated_at`.
