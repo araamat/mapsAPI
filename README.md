@@ -31,4 +31,4 @@ Siin ma selle jätsin, et kasutaja saab ise ka oma postitusi hallata aga teised 
 **Enda filmide all kuvan slackis olnud Kert Mänd api andmeid: https://hajus.tak23mand.itmajakas.ee/api/favourite/07b4cc44-9042-4944-b1dc-56eac757ca4f**
 
 ## BOONUS
-**Siit saan kõvad boonused, sest suutsin alternatiivsesse kohta ka majutada :) : https://mapsapi-lgxu.onrender.com/**
+**Siit saan kõvad boonused, sest suutsin alternatiivsesse kohta ka majutada :) : https://mapsapi-lgxu.onrender.com/** (aga siin peab kannatlik olema :D)
