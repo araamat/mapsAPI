@@ -14,8 +14,7 @@ Logimiseks võid kasutada:
 
 ### **3. Blogi ja Kommentaaride haldus** :white_check_mark:TEHTUD
 ## :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/posts
-
-**Siin ma selle jätsin, et kasutaja saab ise ka oma postitusi hallata aga teised saavad ainult näha ja kommenteerida. Täpselt ei saanud aru, kuidas peab tegema. Admin saab kõike hallata!**
+Siin ma selle jätsin, et kasutaja saab ise ka oma postitusi hallata aga teised saavad ainult näha ja kommenteerida. Täpselt ei saanud aru, kuidas peab tegema. Admin saab kõike hallata!
 
 ### **4. E-pood ja ostukorvi funktsionaalsus** :white_check_mark:TEHTUD
 ## :door:LIVE: https://hajus.ta23raamat.itmajakas.ee/products
